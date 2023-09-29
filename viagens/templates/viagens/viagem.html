@@ -1,0 +1,86 @@
+{% extends "global/base.html" %}
+
+{% block content %}
+	<div class="single-viagem">
+		<h1 class="single-contact table-cel">
+			Sinistro: {{ viagens.sinistro }}  |  {{ viagens.carro.modelo }} - {{ viagens.carro.placa }} | {{ viagens.seguradora.nome_seguradora }}
+ 		</h1>
+
+		<h2>Viagem</h2>
+		{% comment %} <p><b>ID: </b>{{ viagens.id }}</p> {% endcomment %}
+		<p><b>Sinistro: </b>{{ viagens.sinistro }}</p>
+		<p><b>Data: </b>{{ viagens.data }} | <b>Hora: </b>{{ viagens.hora }} | <b>Previsão: </b>{{ viagens.previsao }}</p>
+		<p><b>Causa da Assistência: </b>{{ viagens.causa_assistencia }}</p>
+		<p><b>Descrição: </b>{{ viagens.descricao }}</p>
+		<p><b>Condutor do Reboque: </b>{{ viagens.condutor.nome }}</p>
+		<hr><br>
+		<h2>Seguradora</h2>
+		<div class="responsive-table">
+			<table class="viagens-table">
+				<tr class="table-row">
+					<td class="table-cel"><b>Solicitnte: </b>{{ viagens.seguradora.solicitante }}</td>
+					<td class="table-cel"><b>Produto: </b>{{ viagens.seguradora.produto }}</td>
+					<td class="table-cel"><b>Seguradora: </b>{{ viagens.seguradora.nome_seguradora }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr><br>
+		<h2>Serviço</h2>
+		<div class="responsive-table">
+			<table class="viagens-table">
+				<tr class="table-row">
+					<td class="table-cel"><b>Saída: </b>{{ viagens.servico.saida }}</td>
+					<td class="table-cel"><b>KM Excedente: </b>{{ viagens.servico.km_excedente }}</td>
+					<td class="table-cel"><b>Valor Total: </b>{{ viagens.servico.valor_total }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr><br>
+		<h2>Carro</h2>
+		<div class="responsive-table">
+			<table class="viagens-table">
+				<tr class="table-row">
+					<td class="table-cel"><b>Modelo: </b>{{ viagens.carro.modelo }}</td>
+					<td class="table-cel"><b>Marca: </b>{{ viagens.carro.marca }}</td>
+					<td class="table-cel"><b>Cor: </b>{{ viagens.carro.cor }}</td>
+					<td class="table-cel"><b>Placa: </b>{{ viagens.carro.placa }}</td>
+					<td class="table-cel"><b>Ano: </b>{{ viagens.carro.ano }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr><br>
+		<h2>Contatos</h2>
+		<div class="responsive-table">
+			<table class="viagens-table">
+				<tr class="table-row">
+					<td class="table-cel"><b>Nome: </b>{{ viagens.contato.nome }}</td>
+					<td class="table-cel"><b>Telefone: </b>{{ viagens.contato.telefone }}</td>
+					<td class="table-cel"><b>Email: </b>{{ viagens.contato.email }}</td>
+				</tr>
+			</table>
+		</div>
+		<hr><br>
+		<h2>Endereço da ocorrência</h2>
+		<p><b>CEP: </b>{{ viagens.endereco_ocorrencia.cep }}</p>
+		<p><b>Rua: </b>{{ viagens.endereco_ocorrencia.rua }}</p>
+		<p><b>Número: </b>{{ viagens.endereco_ocorrencia.numero }}</p>
+		<p><b>Complemento: </b>{{ viagens.endereco_ocorrencia.complemento }}</p>
+		<p><b>Municipio / UF: </b>{{ viagens.endereco_ocorrencia.municipio_uf }}</p>
+		<p><b>Referência: </b>{{ viagens.endereco_ocorrencia.referencia }}</p>
+		<hr><br>
+		<h2>Endereço de destino</h2>
+		<p><b>CEP: </b>{{ viagens.endereco_destino.cep }}</p>
+		<p><b>Rua: </b>{{ viagens.endereco_destino.rua }}</p>
+		<p><b>Número: </b>{{ viagens.endereco_destino.numero }}</p>
+		<p><b>Complemento: </b>{{ viagens.endereco_destino.complemento }}</p>
+		<p><b>Municipio / UF: </b>{{ viagens.endereco_destino.municipio_uf }}</p>
+		<p><b>Referência: </b>{{ viagens.endereco_destino.referencia }}</p>
+		<hr><br>
+		<h2>Imagens / Arquivos</h2>
+		<p>{{ viagens.imagens.name }}</p>
+		<hr><br>
+
+
+	</div>
+{% endblock content %}
+

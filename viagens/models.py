@@ -18,7 +18,7 @@ class Seguradora(models.Model):
     nome_seguradora = models.CharField(max_length=20, choices=SOLICITANTE_CHOICES)
 
     def __str__(self):
-        return f"Nome: {self.nome_seguradora}, Solicitante: {self.solicitante}, Produto: {self.produto}"
+        return f"{self.nome_seguradora} {self.solicitante} {self.produto}"
 
 
 class Condutor(models.Model):
@@ -44,7 +44,7 @@ class Carro(models.Model):
     ano = models.IntegerField()
 
     def __str__(self):
-        return f"{self.modelo}, Placa: {self.placa}, Ano: {self.ano}"
+        return f"{self.modelo}, {self.placa}, {self.ano}"
 
 
 class EnderecoOcorrencia(models.Model):
@@ -138,4 +138,4 @@ class Viagem(models.Model):
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self) -> str:
-        return f'{self.sinistro} {self.carro}'
+        return f'{self.sinistro} {self.carro.modelo} - {self.carro.placa}'
