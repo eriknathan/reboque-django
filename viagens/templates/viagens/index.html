@@ -4,7 +4,7 @@
 	<div class="responsive-table">
 		<table class="viagens-table">
 			<caption class="table-caption">
-				Viagens
+				Cadastro de Viagens
 			</caption>
 
 			<thead>
@@ -28,7 +28,9 @@
 							</a>
 						</td>
 						<td class="table-cel">
-							{{ viagem.sinistro }}
+							<a href="{% url 'viagens:viagem' viagem.id %}" class="table-link">
+								{{ viagem.sinistro }}
+							</a>
 						</td>
 						<td class="table-cel">
 							{{ viagem.seguradora.nome_seguradora }}

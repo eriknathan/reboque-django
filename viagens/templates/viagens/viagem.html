@@ -1,6 +1,18 @@
 {% extends "global/base.html" %}
 
 {% block content %}
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 25%;
+		}
+
+		table, th, td {
+			border: 1px solid black;
+		}
+
+	</style>
+
 	<div class="single-viagem">
 		<h1 class="single-contact table-cel">
 			Sinistro: {{ viagens.sinistro }}  |  {{ viagens.carro.modelo }} - {{ viagens.carro.placa }} | {{ viagens.seguradora.nome_seguradora }}
@@ -15,50 +27,42 @@
 		<p><b>Condutor do Reboque: </b>{{ viagens.condutor.nome }}</p>
 		<hr><br>
 		<h2>Seguradora</h2>
-		<div class="responsive-table">
-			<table class="viagens-table">
-				<tr class="table-row">
-					<td class="table-cel"><b>Solicitnte: </b>{{ viagens.seguradora.solicitante }}</td>
-					<td class="table-cel"><b>Produto: </b>{{ viagens.seguradora.produto }}</td>
-					<td class="table-cel"><b>Seguradora: </b>{{ viagens.seguradora.nome_seguradora }}</td>
-				</tr>
-			</table>
-		</div>
+		<table class="viagens-table">
+			<tr>
+				<td class="table-cel"><b>Solicitnte: </b>{{ viagens.seguradora.solicitante }}</td>
+				<td class="table-cel"><b>Produto: </b>{{ viagens.seguradora.produto }}</td>
+				<td class="table-cel"><b>Seguradora: </b>{{ viagens.seguradora.nome_seguradora }}</td>
+			</tr>
+		</table>
 		<hr><br>
 		<h2>Serviço</h2>
-		<div class="responsive-table">
-			<table class="viagens-table">
-				<tr class="table-row">
-					<td class="table-cel"><b>Saída: </b>{{ viagens.servico.saida }}</td>
-					<td class="table-cel"><b>KM Excedente: </b>{{ viagens.servico.km_excedente }}</td>
-					<td class="table-cel"><b>Valor Total: </b>{{ viagens.servico.valor_total }}</td>
-				</tr>
-			</table>
-		</div>
+		<table class="viagens-table">
+			<tr>
+				<td class="table-cel"><b>Saída: </b>{{ viagens.servico.saida }}</td>
+				<td class="table-cel"><b>KM Excedente: </b>{{ viagens.servico.km_excedente }}</td>
+				<td class="table-cel"><b>Valor Total: </b> R$ {{ viagens.servico.valor_total }}</td>
+			</tr>
+		</table>
 		<hr><br>
 		<h2>Carro</h2>
-		<div class="responsive-table">
-			<table class="viagens-table">
-				<tr class="table-row">
-					<td class="table-cel"><b>Modelo: </b>{{ viagens.carro.modelo }}</td>
-					<td class="table-cel"><b>Marca: </b>{{ viagens.carro.marca }}</td>
-					<td class="table-cel"><b>Cor: </b>{{ viagens.carro.cor }}</td>
-					<td class="table-cel"><b>Placa: </b>{{ viagens.carro.placa }}</td>
-					<td class="table-cel"><b>Ano: </b>{{ viagens.carro.ano }}</td>
-				</tr>
-			</table>
-		</div>
+		<table class="viagens-table">
+			<tr>
+				<td class="table-cel"><b>Modelo: </b>{{ viagens.carro.modelo }}</td>
+				<td class="table-cel"><b>Marca: </b>{{ viagens.carro.marca }}</td>
+				<td class="table-cel"><b>Cor: </b>{{ viagens.carro.cor }}</td>
+				<td class="table-cel"><b>Placa: </b>{{ viagens.carro.placa }}</td>
+				<td class="table-cel"><b>Ano: </b>{{ viagens.carro.ano }}</td>
+			</tr>
+		</table>
 		<hr><br>
 		<h2>Contatos</h2>
-		<div class="responsive-table">
-			<table class="viagens-table">
-				<tr class="table-row">
-					<td class="table-cel"><b>Nome: </b>{{ viagens.contato.nome }}</td>
-					<td class="table-cel"><b>Telefone: </b>{{ viagens.contato.telefone }}</td>
-					<td class="table-cel"><b>Email: </b>{{ viagens.contato.email }}</td>
-				</tr>
-			</table>
-		</div>
+		<table class="viagens-table">
+			<tr>
+				<td class="table-cel"><b>Nome: </b>{{ viagens.contato.nome }}</td>
+				<td class="table-cel"><b>Telefone: </b>{{ viagens.contato.telefone }}</td>
+				<td class="table-cel"><b>Email: </b>{{ viagens.contato.email }}</td>
+			</tr>
+		</table>
 		<hr><br>
 		<h2>Endereço da ocorrência</h2>
 		<p><b>CEP: </b>{{ viagens.endereco_ocorrencia.cep }}</p>
