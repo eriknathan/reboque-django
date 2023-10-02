@@ -1,5 +1,5 @@
+from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from viagens.models import Viagem
@@ -10,8 +10,12 @@ def index(request):
         .all() \
         .order_by('-id')
 
+    paginator = Paginator(viagens, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'viagens': viagens,
+        'page_obj': page_obj,
         'site_title': 'Viagens - '
     }
     return render(
@@ -28,12 +32,12 @@ def search(request):
         return redirect('viagens:index')
 
     filters = (
-        Q(sinistro__icontains=search_value) | 
-        Q(seguradora__nome_seguradora__icontains=search_value) |
-        Q(carro__modelo__icontains=search_value) |
-        Q(carro__placa__icontains=search_value) |
-        Q(contato__nome__icontains=search_value) |
-        Q(data__icontains=search_value)
+        Q(sinistro__icontains=search_value)
+        | Q(seguradora__nome_seguradora__icontains=search_value)
+        | Q(carro__modelo__icontains=search_value)
+        | Q(carro__placa__icontains=search_value)
+        | Q(contato__nome__icontains=search_value)
+        | Q(data__icontains=search_value)
     )
 
     viagens = Viagem.objects \
@@ -41,8 +45,12 @@ def search(request):
         .filter(filters) \
         .order_by('-id')
 
+    paginator = Paginator(viagens, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'viagens': viagens,
+        'page_obj': page_obj,
         'site_title': 'Viagens - '
     }
 
