@@ -16,9 +16,9 @@
 		</ul>
 	</nav>
 
-	{% comment %} <div class="search">
+	<div class="search">
 		<form action="{% url 'viagens:search' %}" method="GET">
-			<input type="text" class="search-input" placeholder="Pesquisar..." id="search" name="q">
+			<input type="text" class="search-input" placeholder="Pesquisar..." id="search" name="q" value="{{ request.GET.q }}">
 		</form>
-	</div> {% endcomment %}
+	</div>
 </header>

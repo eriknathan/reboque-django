@@ -1,6 +1,7 @@
 {% extends "global/base.html" %}
 
 {% block content %}
+{% if viagens %}
 	<div class="responsive-table">
 		<table class="viagens-table">
 			<caption class="table-caption">
@@ -52,4 +53,15 @@
 			</tbody>
 		</table>
 	</div>
+
+	{% else %}
+
+	<div class="single-viagem">
+		<h1 class="single-contact table-cel">
+			Nenhum contato encontrado!
+ 		</h1>
+	</div>
+
+{% endif %}
+
 {% endblock content %}

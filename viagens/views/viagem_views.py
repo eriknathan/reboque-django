@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -26,15 +27,25 @@ def search(request):
     if search_value == '':
         return redirect('viagens:index')
 
+    filters = (
+        Q(sinistro__icontains=search_value) | 
+        Q(seguradora__nome_seguradora__icontains=search_value) |
+        Q(carro__modelo__icontains=search_value) |
+        Q(carro__placa__icontains=search_value) |
+        Q(contato__nome__icontains=search_value) |
+        Q(data__icontains=search_value)
+    )
+
     viagens = Viagem.objects \
         .all() \
-        .filter() \
+        .filter(filters) \
         .order_by('-id')
 
     context = {
         'viagens': viagens,
         'site_title': 'Viagens - '
     }
+
     return render(
         request,
         'viagens/index.html',
