@@ -7,18 +7,10 @@ class Seguradora(models.Model):
         verbose_name = "Seguradora"
         verbose_name_plural = "Seguradoras"
 
-    SOLICITANTE_CHOICES = [
-        ('Seguradora A', 'Seguradora A'),
-        ('Seguradora B', 'Seguradora B'),
-        ('Seguradora C', 'Seguradora C'),
-    ]
-
-    solicitante = models.CharField(max_length=100)
-    produto = models.CharField(max_length=100)
-    nome_seguradora = models.CharField(max_length=20, choices=SOLICITANTE_CHOICES)
+    nome_seguradora = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"{self.nome_seguradora} {self.solicitante} {self.produto}"
+        return f"{self.nome_seguradora}"
 
 
 class Condutor(models.Model):
@@ -29,7 +21,7 @@ class Condutor(models.Model):
     nome = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"Condutor: {self.nome}"
+        return f"{self.nome}"
 
 
 class Carro(models.Model):
@@ -92,19 +84,6 @@ class Contato(models.Model):
         return self.nome
 
 
-class Servico(models.Model):
-    class Meta:
-        verbose_name = "Servico"
-        verbose_name_plural = "Servicos"
-
-    saida = models.IntegerField()
-    km_excedente = models.IntegerField()
-    valor_total = models.DecimalField(max_digits=10, decimal_places=2)
-
-    def __str__(self):
-        return f"Saida: {self.saida}, KM Excedente: {self.km_excedente}, Valor Total: {self.valor_total}"
-
-
 class Imagem(models.Model):
     class Meta:
         verbose_name = "Imagem"
@@ -125,15 +104,27 @@ class Viagem(models.Model):
     data = models.DateField()
     hora = models.TimeField()
     previsao = models.CharField(max_length=40)
-    seguradora = models.ForeignKey(Seguradora, on_delete=models.SET_NULL, null=True)
-    servico = models.ForeignKey(Servico, on_delete=models.SET_NULL, null=True)
-    carro = models.ForeignKey(Carro, on_delete=models.SET_NULL, null=True)
+    condutor = models.ForeignKey(Condutor, on_delete=models.SET_NULL, null=True)
     causa_assistencia = models.CharField(max_length=60)
+    descricao = models.TextField()
+
+    # Seguradora
+    seguradora = models.ForeignKey(Seguradora, on_delete=models.SET_NULL, null=True)
+    solicitante = models.CharField(max_length=90, default='null')
+    produto = models.CharField(max_length=90, default='null')
+
+    # Serviço
+    saida = models.DecimalField(max_digits=12, decimal_places=2)
+    km_excedente = models.DecimalField(max_digits=12, decimal_places=2)
+    valor_total = models.DecimalField(max_digits=12, decimal_places=2)
+
+    carro = models.ForeignKey(Carro, on_delete=models.SET_NULL, null=True)
+
+    # Endereço
     endereco_ocorrencia = models.OneToOneField(EnderecoOcorrencia, on_delete=models.SET_NULL, null=True)
     endereco_destino = models.OneToOneField(EnderecoDestino, on_delete=models.SET_NULL, null=True)
-    condutor = models.ForeignKey(Condutor, on_delete=models.SET_NULL, null=True)
+
     contato = models.ForeignKey(Contato, on_delete=models.SET_NULL, null=True)
-    descricao = models.TextField()
     imagens = models.ManyToManyField(Imagem, blank=True)
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 

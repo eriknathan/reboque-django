@@ -44,11 +44,6 @@ class ContatoAdmin(admin.ModelAdmin):
     list_display = 'nome', 'telefone', 'email'
 
 
-@admin.register(models.Servico)
-class ServicoAdmin(admin.ModelAdmin):
-    list_display = 'saida', 'km_excedente', 'valor_total'
-
-
 @admin.register(models.Imagem)
 class ImagemAdmin(admin.ModelAdmin):
     list_display = 'imagem',

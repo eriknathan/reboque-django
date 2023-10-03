@@ -5,7 +5,12 @@ from viagens import views
 app_name = 'viagens'
 
 urlpatterns = [
-    path("<int:viagem_id>/", views.viagem, name='viagem'),
-    path("search/", views.search, name='search'),
     path("", views.index, name='index'),
+    path("search/", views.search, name='search'),
+
+    # viagens (CRUD)
+    path("viagens/<int:viagem_id>/detail/", views.viagem, name='viagem'),
+    path("viagens/create/", views.create, name='create'),
+    # path("viagens/<int:viagem_id>/update/", views.viagem, name='viagem'),
+    # path("viagens/<int:viagem_id>/delete/", views.viagem, name='viagem'),
 ]
