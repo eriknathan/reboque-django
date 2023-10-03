@@ -7,15 +7,7 @@ class Seguradora(models.Model):
         verbose_name = "Seguradora"
         verbose_name_plural = "Seguradoras"
 
-    SOLICITANTE_CHOICES = [
-        ('Seguradora A', 'Seguradora A'),
-        ('Seguradora B', 'Seguradora B'),
-        ('Seguradora C', 'Seguradora C'),
-    ]
-
-    nome_seguradora = models.CharField(max_length=20, choices=SOLICITANTE_CHOICES)
-    solicitante = models.CharField(max_length=90)
-    produto = models.CharField(max_length=90)
+    nome_seguradora = models.CharField(max_length=20)
 
     def __str__(self):
         return f"{self.nome_seguradora}"
@@ -30,19 +22,6 @@ class Condutor(models.Model):
 
     def __str__(self):
         return f"{self.nome}"
-
-
-class Servico(models.Model):
-    class Meta:
-        verbose_name = "Serviço"
-        verbose_name_plural = "Serviços"
-
-    saida = models.DecimalField(max_digits=12, decimal_places=2)
-    km_excedente = models.DecimalField(max_digits=12, decimal_places=2)
-    valor_total = models.DecimalField(max_digits=12, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.valor_total}"
 
 
 class Carro(models.Model):
@@ -122,7 +101,6 @@ class Viagem(models.Model):
         verbose_name = "Viagem"
         verbose_name_plural = "Viagens"
 
-    # Viagem
     sinistro = models.IntegerField(unique=True)
     data = models.DateField()
     hora = models.TimeField()
@@ -131,22 +109,23 @@ class Viagem(models.Model):
     causa_assistencia = models.CharField(max_length=60)
     descricao = models.TextField()
 
-    # Serviço
-    servico = models.ForeignKey(Servico, on_delete=models.SET_NULL, null=True)
-
     # Seguradora
     seguradora = models.ForeignKey(Seguradora, on_delete=models.SET_NULL, null=True)
+    solicitante = models.CharField(max_length=90)
+    produto = models.CharField(max_length=90)
 
-    # Carro
+    # Serviço
+    saida = models.DecimalField(max_digits=12, decimal_places=2)
+    km_excedente = models.DecimalField(max_digits=12, decimal_places=2)
+    valor_total = models.DecimalField(max_digits=12, decimal_places=2)
+
     carro = models.ForeignKey(Carro, on_delete=models.SET_NULL, null=True)
-
-    # Contato
-    contato = models.ForeignKey(Contato, on_delete=models.SET_NULL, null=True)
 
     # Endereço
     endereco_ocorrencia = models.OneToOneField(EnderecoOcorrencia, on_delete=models.SET_NULL, null=True)
     endereco_destino = models.OneToOneField(EnderecoDestino, on_delete=models.SET_NULL, null=True)
 
+    contato = models.ForeignKey(Contato, on_delete=models.SET_NULL, null=True)
     imagens = models.ManyToManyField(Imagem, blank=True)
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 

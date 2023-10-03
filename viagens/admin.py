@@ -15,12 +15,12 @@ class ViagemAdmin(admin.ModelAdmin):
 
 @admin.register(models.Seguradora)
 class SeguradoraAdmin(admin.ModelAdmin):
-    list_display = 'nome_seguradora',
+    list_display = 'nome_seguradora', 'solicitante', 'produto'
 
 
 @admin.register(models.Carro)
 class CarroAdmin(admin.ModelAdmin):
-    list_display = 'modelo', 'marca', 'ano', 'placa'
+    list_display = 'modelo', 'marca', 'cor', 'placa', 'ano'
 
 
 @admin.register(models.EnderecoOcorrencia)
@@ -33,15 +33,19 @@ class EnderecoDestinoAdmin(admin.ModelAdmin):
     list_display = 'cep', 'rua', 'municipio_uf'
 
 
-
 @admin.register(models.Condutor)
 class CondutorAdmin(admin.ModelAdmin):
     list_display = 'nome',
 
 
+@admin.register(models.Servico)
+class ContatoAdmin(admin.ModelAdmin):
+    list_display = 'saida', 'km_excedente', 'valor_total'
+
+
 @admin.register(models.Contato)
 class ContatoAdmin(admin.ModelAdmin):
-    list_display = 'nome', 'telefone', 'email'
+    list_display = 'nome', 'telefone', 'whatsapp', 'email'
 
 
 @admin.register(models.Imagem)

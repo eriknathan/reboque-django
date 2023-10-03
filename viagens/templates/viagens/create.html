@@ -18,13 +18,86 @@
 							<p class="help-text">{{ field.help_text }}</p>
 						{% endif %}		
 					</div>
+				{% endfor %}
+				<h2>Serviço</h2>
+				{% for field in form_service %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
 
-					{% if field.name == 'picture' and field.value.url %}
+						{% if field.help_text %}
+							<p class="help-text">{{ field.help_text }}</p>
+						{% endif %}		
+					</div>
+				{% endfor %}
+				<h2>Seguradora</h2>
+				{% for field in form_seguradora %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
+
+						{% if field.help_text %}
+							<p class="help-text">{{ field.help_text }}</p>
+						{% endif %}		
+					</div>
+				{% endfor %}
+				<h2>Carro</h2>
+				{% for field in form_carro %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
+
+						{% if field.help_text %}
+							<p class="help-text">{{ field.help_text }}</p>
+						{% endif %}		
+					</div>
+				{% endfor %}
+				<h2>Contato</h2>
+				{% for field in form_contact %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
+
+						{% if field.help_text %}
+							<p class="help-text">{{ field.help_text }}</p>
+						{% endif %}		
+					</div>
+				{% endfor %}
+				<h2>Endereço da Ocorrência</h2>
+				{% for field in form_end_ocorrencia %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
+
+						{% if field.help_text %}
+							<p class="help-text">{{ field.help_text }}</p>
+						{% endif %}		
+					</div>
+				{% endfor %}
+				<h2>Endereço Destino</h2>
+				{% for field in form_end_destino %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
+						{{ field }}
+						{{ field.errors }}
+
+						{% if field.help_text %}
+							<p class="help-text">{{ field.help_text }}</p>
+						{% endif %}		
+					</div>
+				{% endfor %}
+				
+				
+				{% if field.name == 'picture' and field.value.url %}
 					<div class="form-group">
 						<img src="{{ field.value.url }}" alt="">
 					</div>
-					{% endif %}
-				{% endfor %}
+				{% endif %}
 			</div> 
 
 			<div class="form-content">
