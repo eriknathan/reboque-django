@@ -14,8 +14,6 @@ def index(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    print(f'FFFFFFFFFFFFFFFFF = {page_obj}')
-
     context = {
         'page_obj': page_obj,
         'site_title': 'Viagens - '
@@ -71,6 +69,7 @@ def viagem(request, viagem_id):
         'viagens': single_viagem,
         'site_title': f'{single_viagem.sinistro} - '
     }
+
     return render(
         request,
         'viagens/viagem.html',

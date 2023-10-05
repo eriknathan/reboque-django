@@ -8,7 +8,7 @@ from viagens.forms import (CarroForm, ContatoForm, EndDestinoForm,
 def create(request):
     if request.method == 'POST':
         context = {
-            'form': ViagemForm(request.POST),
+            'form_viagem': ViagemForm(request.POST),
             'form_contact': ContatoForm(request.POST),
             'form_service': ServicoForm(request.POST),
             'form_service': SeguradoraForm(request.POST),
@@ -23,14 +23,14 @@ def create(request):
         )
 
     context = {
-        'form': ViagemForm(),
+        'form_viagem': ViagemForm(),
         'form_contact': ContatoForm(),
         'form_service': ServicoForm(),
         'form_seguradora': SeguradoraForm(),
         'form_carro': CarroForm(),
         'form_end_ocorrencia': EndOcorrenciaForm(),
         'form_end_destino': EndDestinoForm()
-    }
+    }   
     return render(
         request,
         'viagens/create.html',

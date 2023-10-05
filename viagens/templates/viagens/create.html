@@ -8,7 +8,7 @@
 		{% csrf_token %}
 
 			<div class="form-content">
-				{% for field in form %}
+				{% for field in form_viagem %}
 					<div class="form-group">
 						<label for="{{ field.id_for_label }}">{{ field.label }}</label>
 						{{ field }}

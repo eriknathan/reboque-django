@@ -13,9 +13,9 @@ class Seguradora(models.Model):
         ('Seguradora C', 'Seguradora C'),
     ]
 
-    nome_seguradora = models.CharField(max_length=20, choices=SOLICITANTE_CHOICES)
-    solicitante = models.CharField(max_length=90)
-    produto = models.CharField(max_length=90)
+    nome_seguradora = models.CharField(max_length=20, choices=SOLICITANTE_CHOICES, verbose_name="Nome da Seguradora")
+    solicitante = models.CharField(max_length=90, verbose_name="Solicitante")
+    produto = models.CharField(max_length=90, verbose_name="Produto")
 
     def __str__(self):
         return f"{self.nome_seguradora}"
@@ -37,9 +37,9 @@ class Servico(models.Model):
         verbose_name = "Serviço"
         verbose_name_plural = "Serviços"
 
-    saida = models.DecimalField(max_digits=12, decimal_places=2)
-    km_excedente = models.DecimalField(max_digits=12, decimal_places=2)
-    valor_total = models.DecimalField(max_digits=12, decimal_places=2)
+    saida = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Saída (Valor)")
+    km_excedente = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="KM Excedente (valor)")
+    valor_total = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Valor total")
 
     def __str__(self):
         return f"{self.valor_total}"
@@ -66,9 +66,9 @@ class EnderecoOcorrencia(models.Model):
         verbose_name_plural = "Endereços da Ocorrência"
 
     rua = models.CharField(max_length=255)
-    numero = models.CharField(max_length=10)
+    numero = models.CharField(max_length=10, verbose_name="Número")
     complemento = models.CharField(max_length=255, blank=True, null=True)
-    municipio_uf = models.CharField(max_length=100)
+    municipio_uf = models.CharField(max_length=100, verbose_name="Município / UF")
     cep = models.CharField(max_length=10)
     referencia = models.TextField(blank=True, null=True)
 
@@ -82,9 +82,9 @@ class EnderecoDestino(models.Model):
         verbose_name_plural = "Endereços de Destino"
 
     rua = models.CharField(max_length=255)
-    numero = models.CharField(max_length=10)
+    numero = models.CharField(max_length=10, verbose_name="Número")
     complemento = models.CharField(max_length=255, blank=True, null=True)
-    municipio_uf = models.CharField(max_length=100)
+    municipio_uf = models.CharField(max_length=100, verbose_name="Município / UF")
     cep = models.CharField(max_length=10)
     referencia = models.TextField(blank=True, null=True)
 
@@ -123,13 +123,13 @@ class Viagem(models.Model):
         verbose_name_plural = "Viagens"
 
     # Viagem
-    sinistro = models.IntegerField(unique=True)
-    data = models.DateField()
-    hora = models.TimeField()
-    previsao = models.CharField(max_length=40)
-    condutor = models.ForeignKey(Condutor, on_delete=models.SET_NULL, null=True)
-    causa_assistencia = models.CharField(max_length=60)
-    descricao = models.TextField()
+    sinistro = models.IntegerField(unique=True, verbose_name="Sinistro")
+    data = models.DateField(verbose_name="Data da Viagem")
+    hora = models.TimeField(verbose_name="Hora da Viagem")
+    previsao = models.CharField(max_length=40, verbose_name="Previsão")
+    condutor = models.ForeignKey(Condutor, on_delete=models.SET_NULL, null=True, verbose_name="Condutor do Reboque")
+    causa_assistencia = models.CharField(max_length=60, verbose_name="Causa da Assistência")
+    descricao = models.TextField(verbose_name="Descrição")
 
     # Serviço
     servico = models.ForeignKey(Servico, on_delete=models.SET_NULL, null=True)
