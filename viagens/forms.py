@@ -81,10 +81,11 @@ class ViagemForm(forms.ModelForm):
         model = models.Viagem
         fields = ('sinistro', 'data', 'hora', 'previsao', 'condutor', 'causa_assistencia', 'descricao',)
 
-        def clean(self):
-            # cleaned_data = self.cleaned_data
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        sinistro = cleaned_data.get('sinistro')
 
-            self.add_error(
-                'sinistro',
-                ValidationError('Mensagem de erro', code='invalid')
-            )
+        if sinistro == f'{models.Viagem.sinistro}':
+            msg = ValidationError("Sinistro já cadastrado", code='invalid')
+
+        self.add_error('sinistro', msg)
